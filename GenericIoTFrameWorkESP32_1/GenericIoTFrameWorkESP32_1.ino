@@ -76,12 +76,7 @@
 // Arduino IDE programming parameters.
 // 
 // From Tools Menu
-// Board: 'ESP32 Dev Module'
-// Flash Mode: 'QIO'
-// CPU Frequency: '240 MHz (WiFi/BT)'
-// PSRAM: Disabled
-// Flash Size: '4MB (32Mb)'
-// Partition Scheme: 'Default 4MB with spiffs (1.2MB APP/1.5MB SPIFFS)'
+// Board: 'NodeMCU-32S'
 // Flash Frequency: '80MHz'
 // Upload Speed: '921600'
 // Core Debug Level: 'None'
@@ -89,7 +84,7 @@
 // Programmer: 'AVRISP mkII'
 //
 
-//#define BOARD_HAS_A_SYSTEM_LED // Define this if the board has a system led fitted. This will enable debug .
+#define BOARD_HAS_A_SYSTEM_LED // Define this if the board has a system led fitted. This will enable debug .
 //#define DEBUG_GENERAL        // Undefine this for general debug information via the serial port. Note, you must deploy with this undefined as your network security parameters will be sent to serial port
 //#define DEBUG_WEB            // Undefine this for comprehensive debug information on web interface via the serial port. Requires DEBUG_GENERAL.
 //#define DEBUG_MDNS           // Undefine this for comprehensive debug information on mDNS support via the serial port. Requires DEBUG_GENERAL.
@@ -160,13 +155,32 @@ int    conDotCountNW   = 0; // Used to print a NW connecting dot each 500ms
 int    conDotCountMQTT = 0; // Used to print a MQTT connecting dot each 500ms
 #endif
 
+// Using boards manager 'ESP32 by espressif systems' v1.0.2
+// For pins_arduino.h file check boards.txt for name ie. Board Name 'WEMOS LOLIN32' = ...\lolin32\pins_arduino.h
+// C:\Users\{you user name}\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.2\boards.txt
+// See : https://www.youtube.com/watch?v=G8uP1M-c1-o&feature=youtu.be
+//
 // don't forget to #define 'BOARD_HAS_A_SYSTEM_LED'
-// LED on NodeMCU ESP-32S v1.1 GPIO2
-// LED on WIMOS LOLIN32 GPIO5
-// LED on TTGO GPIO16
-// LED on Heltek WIFI Kit 32 GPIO25
-// ESP32_Core_Board_V2 has no led on the board
-const int lightPin = 2;
+//
+// LED on NodeMCU ESP-32S v1.1 GPIO2, Espressif IC Pin 22, ESP32 Castelated Pin 24, De-Ref BUILTIN_LED. Board Name 'NodeMCU-32S'
+// C:\Users\{you user name}\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.2\variants\nodemcu-32s\pins_arduino.h
+const int lightPin = BUILTIN_LED;
+//
+// LED on WEMOS LOLIN32 GPIO5, Espressif IC Pin 34, ESP32 Castelated Pin 29, De-Ref BUILTIN_LED. Board Name 'WEMOS LOLIN32'
+// C:\Users\{you user name}\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.2\variants\lolin32\pins_arduino.h
+//const int lightPin = BUILTIN_LED;
+//
+// LED on TTGO GPIO16, Espressif IC Pin 25, ESP32 Castelated Pin 27, De-Ref 16. Board Name 'TTGO LoRa32-OLED V1'. Needs some work.
+// C:\Users\{you user name}\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.2\variants\ttgo-lora32-v1\pins_arduino.h
+//const int lightPin = 16;
+//
+// LED on Heltec WIFI Kit 32 GPIO25, Espressif IC Pin 14, ESP32 Castelated Pin 10, De-Ref BUILTIN_LED. Board Name 'Heltec WIFI Kit 32'
+// C:\Users\{you user name}\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.2\variants\heltec_wifi_kit_32\pins_arduino.h
+//const int lightPin = BUILTIN_LED;
+//
+// ESP32_Core_Board_V2 has no led on the board. 'ESP32 Dev Module'
+// C:\Users\{you user name}\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.2\variants\esp32\pins_arduino.h
+//
 
 // Topic to publish to, to request this device publish the status of its local software version (Generic Device, MAC Addr, Filename.ino). Caution : This a THSen Broadcast message.
 const char* swVerTopic = "WFD/GenIoT/SwVer/Command";
